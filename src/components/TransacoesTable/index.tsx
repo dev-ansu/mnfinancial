@@ -1,33 +1,17 @@
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { convertToDate } from "../../helpers/convertToDate";
 import { useTransacoesContext } from "../../contexts/TransacoesContext";
+import Table from "../Table";
 
 
 const TransacoesTable = ()=>{
     const {transacoes} = useTransacoesContext();
-
+ 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lgw-full h-full">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" className="px-6 text-center py-3">
-                        Descrição
-                    </th>
-                    <th scope="col" className="px-6 text-center py-3">
-                        Valor
-                    </th>
-                    <th scope="col" className="px-6 text-center py-3">
-                        Data da transação
-                    </th>
-                    <th scope="col" className="px-6 text-center py-3">
-                        Tipo de transação
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                    {transacoes.map(transacao => (
-                        <tr key={transacao.id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+            <Table thead={['Descrição', 'Valor','Data da transação','Tipo de transação']}>
+                {transacoes.map(transacao => (
+                    <tr key={transacao.id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {transacao.descricao}
                         </th>
@@ -52,9 +36,8 @@ const TransacoesTable = ()=>{
                             <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         </td>
                     </tr>
-                    ))}
-                </tbody>
-            </table>                
+                ))}
+            </Table>            
         </div>
     )
 }

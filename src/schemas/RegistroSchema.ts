@@ -9,6 +9,7 @@ export const RegistroSchema = z.object({
     }, {
         message: "Por favor, insira um número válido (decimais separados por ponto)."
     }),
+    categoria_id: z.string().min(1, 'Campo obrigatório.').optional(),
     tipoValor: z.string({message:'Escolha uma das opções'}).refine((value: string) =>{
         value =  value.toLocaleUpperCase() 
         return value === 'E' || value === 'S' ? true:false;
